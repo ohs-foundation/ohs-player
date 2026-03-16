@@ -6,7 +6,7 @@ The OHS Player is a cross-stack reference toolkit. Its objective is to provide a
 
 The OHS Player is conceptualized as a stack/reference tool kit. The core cross-stack components are:
 
-  * **Mobile (Client):** A configurable KMP-based reference mobile digital health starter application.
+  * **Client:** A configurable Kotlin Multi Platform (KMP)-based reference digital health starter application built for various platform targets e.g Android, iOS e.t.c
   * **Web portal:** A web-based management tool designed for healthcare organizations to manage workforce hierarchies. It is a configurable, extendible boilerplate with core features like user management and enforcing access controls.
   * **Pipeline:** Used to deploy FHIR Data Pipes.
   * **Proxy:** Used to set up Auth & IAM to gate the deployed FHIR Store.

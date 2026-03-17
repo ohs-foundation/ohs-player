@@ -1,6 +1,8 @@
 # OHS Player
 
-The OHS Player is a cross-stack reference toolkit. Its objective is to provide an easy way to plug, play, and deploy the [OHS components](https://developers.google.com/open-health-stack/overview). It will also serve to showcase the _best of_ the OHS features and as a platform for knowledge sharing of best practice for common use cases.
+The OHS Player is a cross-stack reference toolkit. Its objective is to provide an easy way to plug, play, and deploy the [OHS components](https://developers.google.com/open-health-stack/overview). It will also serve to showcase the _best of_ the OHS features and as a platform for knowledge sharing of best practice for common use cases. 
+
+OHS stands for the Open Health Stack. For more check out the [Open Health Stack documentation](https://developers.google.com/open-health-stack/overview).
 
 ## 🚀 Overview and Components
 

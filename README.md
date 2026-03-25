@@ -24,8 +24,7 @@ The OHS Player Reference multi-platform app key components and workstreams for t
 
   * **Data layer:** Implementing the data storage solution
   * **Authentication:** Supporting online and offline log-in workflows.
-  * **Registers:** Configurable data registers that render collected data in tabular form.
-  * **Profiles:** Configurable single-record profile data.
+  * **Views:** Configurable data registers that render collected data in tabular form and Configurable single-record profile data.
   * **Internationalization (i18N):** Multi-language support.
   * **Sync implementation:** Redesign and discussion are needed for how to sync data and support various community sync strategies.
   

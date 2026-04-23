@@ -1,0 +1,99 @@
+site_name: OHS Player
+site_description: Developer documentation for the OHS Player
+site_url: https://ohs.ohsplayer.dev/
+repo_url: https://github.com/ohs-foundation/ohs-player 
+edit_uri: edit/main/docs/
+remote_branch: gh-pages
+use_directory_urls: true
+strict: true
+extra_css:
+  - assets/css/custom.css
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - content.action.edit
+    - content.code.copy
+    - navigation.footer
+    - navigation.instant
+    - navigation.path
+    - navigation.prune
+    - navigation.top
+    - navigation.tracking
+    - search.share
+    - search.suggest
+
+extra:
+  generator: false
+  version:
+    provider: mike
+    default:
+      - latest
+      - dev
+    alias: true
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - Getting Started:
+    - getting-started/overview.md
+    - getting-started/installation.md
+    - getting-started/quick-start.md
+  - User Guide:
+    - user-guide/configuration.md
+    - user-guide/authentication.md
+    - user-guide/data-management.md
+  - Developer Guide:
+    - developer-guide/contributing.md
+    - developer-guide/api-reference.md
+  - Deployment:
+    - deployment/overview.md
+  - FAQ: faq.md
+  - Changelog: changelog.md
+
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.details
+  - pymdownx.magiclink
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: false
+      fallback_to_build_date: true
+      type: date
+  - minify:
+      minify_html: true
+validation:
+  nav:
+    not_found: warn
+    absolute_links: warn
+    omitted_files: warn
+  links:
+    anchors: warn
+    not_found: warn
+    absolute_links: warn
+    unrecognized_links: warn

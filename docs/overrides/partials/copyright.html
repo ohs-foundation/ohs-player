@@ -1,0 +1,11 @@
+<div class="md-copyright ohs-footer">
+  <div class="ohs-footer__brand">
+    <strong>{{ config.site_name }}</strong>
+  </div>
+  <div class="ohs-footer__links">
+    <a href="{{ config.site_url }}">Docs Home</a>
+    {% if config.repo_url %}
+      <a href="{{ config.repo_url }}" target="_blank" rel="noopener">GitHub</a>
+    {% endif %}
+  </div>
+</div>

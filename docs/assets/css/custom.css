@@ -9,3 +9,39 @@
 code {
   border-radius: 4px;
 }
+
+/* Footer */
+.ohs-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  width: 100%;
+}
+
+.ohs-footer__brand,
+.ohs-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.ohs-footer__brand {
+  color: var(--md-footer-fg-color, inherit);
+}
+
+.ohs-footer__brand strong {
+  color: inherit;
+}
+
+.ohs-footer__links a {
+  font-weight: 600;
+}
+
+@media screen and (max-width: 76.2344em) {
+  .ohs-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

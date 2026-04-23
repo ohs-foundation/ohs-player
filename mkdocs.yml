@@ -1,12 +1,19 @@
 site_name: OHS Player
 site_description: Developer documentation for the OHS Player
-site_author: Kiprotich Japheth 
 site_url: https://ohs.ohsplayer.dev/
-repo_url: https://github.com/ohs-foundation/ohs-player
+repo_url: https://github.com/ohs-foundation/ohs-player 
 edit_uri: edit/main/docs/
+remote_branch: gh-pages
+use_directory_urls: true
+strict: true
+extra_css:
+  - assets/css/custom.css
 
 theme:
   name: material
+  custom_dir: docs/overrides
+  icon:
+    repo: fontawesome/brands/github
   palette:
     - scheme: default
       primary: indigo
@@ -22,15 +29,24 @@ theme:
         name: Switch to light mode
   features:
     - content.action.edit
-    - content.code.copy 
-    - navigation.prune
+    - content.code.copy
     - navigation.footer
     - navigation.instant
-    - navigation.tracking
     - navigation.path
+    - navigation.prune
     - navigation.top
-    - search.suggest
+    - navigation.tracking
     - search.share
+    - search.suggest
+
+extra:
+  generator: false
+  version:
+    provider: mike
+    default:
+      - latest
+      - dev
+    alias: true
 
 nav:
   - Home: index.md
@@ -54,19 +70,23 @@ nav:
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - md_in_html
+  - tables
   - pymdownx.details
-  - pymdownx.superfences
   - pymdownx.magiclink
+  - pymdownx.superfences
+  - toc:
+      permalink: true
 
 plugins:
   - search
-  - git-revision-date-localized
+  - git-revision-date-localized:
+      enable_creation_date: false
+      fallback_to_build_date: true
+      type: date
   - minify:
       minify_html: true
-
-# https://www.mkdocs.org/user-guide/configuration/#validation
-# Nota Bene: There is no "error" level in MkDocs, but the build-docs.bash script
-# uses "mkdocs build --strict", which cause MkDocs to abort the build on any warnings.
 validation:
   nav:
     not_found: warn

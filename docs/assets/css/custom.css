@@ -1,0 +1,11 @@
+/* ── Custom overrides ─────────────────────────────────────── */
+
+/* Slightly wider content area */
+.md-grid {
+  max-width: 1200px;
+}
+
+/* Inline code styling */
+code {
+  border-radius: 4px;
+}

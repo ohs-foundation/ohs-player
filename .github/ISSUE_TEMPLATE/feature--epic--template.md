@@ -1,6 +1,6 @@
 ---
 name: Feature (Epic) template
-about: HIgh level feature with sub-tasks across repositories
+about: High level feature with sub-tasks across repositories
 title: ''
 labels: ''
 assignees: ''

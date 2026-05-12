@@ -1,452 +1,257 @@
-# OHS Player Roadmap and Project Checklist
+# 🗺️ OHS Player Roadmap
 
-> **Project Goal:** Enable easier adoption of Open Health Stack (OHS) by building a KMP-based OHS Player reference toolkit with cross-platform client apps, FHIR Web Administration Portal, and easy-to-deploy backend stack.
+> **Mission:** Deliver a standards-based, interoperable toolkit to accelerate digital health application development utilizing the HL7 FHIR standard and Kotlin Multiplatform.
 
-## Status Legend
-
-| Status | Description |
-|--------|-------------|
-| ⬜ Pending | Not yet started |
-| 🔄 Ongoing | Work in progress |
-| ✅ Done | Completed |
-| 🚫 Blocked | Blocked by dependency or issue |
-| ⏳ Deferred | Postponed to a future phase or release |
+**📋 Looking for the detailed task checklist?** See [PROJECT_CHECKLIST.md](./PROJECT_CHECKLIST.md)
 
 ---
 
-## Workstream 1: KMP SDK Migration (Foundation)
+## Overview
 
-**Timeline:** Q1-Q2 2026  
-**Responsible:** Ona, Intellisoft, NawiTech, OHS Community
+This roadmap tracks high-level **Feature Epics** across three delivery horizons. Each Epic is a GitHub Issue in this repository (`ohs-player`) that links to execution tasks in the code repositories.
 
-### 1.1 Structured Data Capture (SDC) - KMP Migration
+- **Epics** live here in `ohs-player` (no code, just tracking)
+- **Tasks** live in execution repos (`-client-app`, `-backend`, `-infrastructure`)
+- **GitHub Project Board** provides timeline and kanban views
 
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| 🔄 Ongoing | Widget migration | Migrate SDC widgets to KMP | Q1 | | | |
-| 🔄 Ongoing | Catalog migration | Migrate catalog module to KMP | Q1 | | | |
-| ⬜ Pending | Alpha release | SDC KMP Alpha version | Mid-Q1 | Widget migration, Catalog migration | | |
-| ⬜ Pending | Final release | SDC KMP completion | End Q1 | Alpha release | | |
-| 🚫 Blocked | GitHub repo migration | Holding off release due to OHS foundation codebase migration | Q1 | OHS Foundation GitHub org setup | | |
-| 🚫 Blocked | Maven migration | Maven registry transfer to OHS Foundation | Q1 | Linux Foundation coordination | | |
+## Repository Structure
 
-### 1.2 FHIR Engine - KMP Migration
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| 🔄 Ongoing | Migration assessment | Assess what needs migration to KMP | Feb | | | |
-| 🔄 Ongoing | Migration plan | Finalize migration plan | Feb | Migration assessment | | |
-| ⬜ Pending | New dependencies | Replace Android/Java only libraries with KMP alternatives | Q1-Q2 | Migration plan | | |
-| ⬜ Pending | KMP lib setup | Set up new KMP library structure | Q1 | | | |
-| ⬜ Pending | Sync implementation | CRUD and sync operations in KMP | Q2 | KMP lib setup | | |
-| ⬜ Pending | Alpha release | FHIR Engine KMP Alpha | End Q2 | Sync implementation | | |
-
-### 1.3 Data Layer Architecture
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Room vs SQLDelight decision | Evaluate persistence strategies (WASM support considerations) | Q1 | | | WASM not supported by Room currently |
-| ⬜ Pending | Document decision | Document decision and implementation approach | Q1 | Room vs SQLDelight decision | | |
-| ⬜ Pending | Implementation | Implement chosen persistence strategy | Q1-Q2 | Document decision | | |
-
-### 1.4 Workflow Engine
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | StructureMap support | Implement StructureMap-based $apply operations | Q1-Q2 | | | |
-| ⬜ Pending | FML dependencies | Resolve FML and transform API dependencies | Q1-Q2 | | | |
-| ⏳ Deferred | CQL support | CQL-based $apply operations | H1 2026 | Bryn CQL work | | Dependency on Bryn for CQL |
-| ⬜ Pending | SMART Guidelines | SDK that can execute SMART Guidelines (WHO approach) | Q2 | StructureMap support | | |
-
-### 1.5 Kotlin FHIRPath
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ✅ Done | Beta release | Kotlin FHIRPath library v1.0.0-beta01 | Completed | | | |
-| ⬜ Pending | FHIRPath labs | Plan to add to FHIRPath labs | Q1 | | | Discussing with Brian Postlethwaite |
-
-### 1.6 Future Components
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Catalog Module | KMP-compatible Catalog module | Q2-Q3 | | | |
-| ⏳ Deferred | Reporting module | Reporting module V2 Alpha | V2 | | | Future phase |
-| ⏳ Deferred | KM Library | Knowledge Management Library V2/V3 | V2/V3 | | | Future phase |
+```
+ohs-foundation/
+├── ohs-player                          # This repo - Epic/Spec tracking (NO CODE)
+├── ohs-player-reference-client-app     # KMP client application
+├── ohs-player-reference-backend        # Web admin & gateway plugins
+├── ohs-player-reference-infrastructure # Docker/deployment scripts
+├── kotlin-fhir                         # Core KMP FHIR library
+├── kotlin-fhir-engine                  # Core KMP FHIR engine
+└── fhir-gateway                        # FHIR Info Gateway
+```
 
 ---
 
-## Workstream 2: OHS Player Reference App (KMP Client)
+## 🚀 Horizon 1: Alpha Release ("The MVP Sandbox")
 
-**Timeline:** Q1-Q3 2026  
-**Responsible:** Ona, Intellisoft, NawiTech, OHS Community
+**Target:** June 2026  
+**Focus:** Functional local sandbox with MVP Web Admin portal and expanded functional Client App
 
-### 2.1 OHS Player Library Core
+### Client App Epics
 
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Repository setup | Create ohs-reference-app repository with library and app modules | Q1 | GitHub org migration | | |
-| ⬜ Pending | Library structure | Set up ohs-player library module structure | Q1 | Repository setup | | |
-| ⬜ Pending | kotlin-fhir integration | Integrate kotlin-fhir library | Q1 | Library structure | | |
-| ⬜ Pending | kotlin-fhirpath integration | Integrate kotlin-fhirpath library | Q1 | Library structure | | |
+| Epic | Description | Repo |
+|------|-------------|------|
+| [#TBD](.) | **KMP SDK & Engine** - Deploy initial KMP SDK with core kotlin-FHIR engine | `kotlin-fhir`, `kotlin-fhir-engine` |
+| [#TBD](.) | **UI Generation & Data Capture** - Dynamic form rendering from FHIR Questionnaire | `ohs-player-reference-client-app` |
+| [#TBD](.) | **Extraction & Population** - Extract inputs and map to FHIR resources | `ohs-player-reference-client-app` |
+| [#TBD](.) | **Sync Functionality** - Baseline sync engine for pull/push with gateway | `ohs-player-reference-client-app` |
+| [#TBD](.) | **Config Layer** - Config parsing engine, workflow mapping from local assets | `ohs-player-reference-client-app` |
 
-### 2.2 Data Transformer Layer
+### Backend & Web Admin Epics
 
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Flattening engine | FHIRPath-based flattening engine for FHIR to Map<String, Any> | Q1-Q2 | kotlin-fhirpath integration | | |
-| ⬜ Pending | Observable data model | Create observable flat data structure for UI consumption | Q1-Q2 | Flattening engine | | |
-| ⬜ Pending | Field expressions | Associate fields with FHIRPath expressions | Q1-Q2 | Flattening engine | | |
-| ⬜ Pending | Performance optimization | Optimize data transformation performance | Q2-Q3 | Observable data model | | |
+| Epic | Description | Repo |
+|------|-------------|------|
+| [#TBD](.) | **Core Library Foundation** - CorePlatformProvider, OIDC auth, RBAC, FHIR client | `ohs-player-reference-backend` |
+| [#TBD](.) | **Location Access Checker** - FHIR Task, Location, Security Label based access | `ohs-player-reference-backend` |
+| [#TBD](.) | **Plugin Architecture** - Custom endpoints without modifying core code | `ohs-player-reference-backend` |
+| [#TBD](.) | **MVP Admin Portal** - User, Location, CareTeam management UI | `ohs-player-reference-backend` |
+| [#TBD](.) | **Identity & Hierarchy** - Keycloak IAM + Location hierarchy management | `ohs-player-reference-backend` |
 
-### 2.3 Workflow Manager
+### Infrastructure Epics
 
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | $apply operation | Implement $apply operation logic for PlanDefinition | Q2 | FHIR Engine KMP | | |
-| ⬜ Pending | Task state machine | Build Task state machine (ready -> in-progress -> completed) | Q2 | $apply operation | | |
-| ⬜ Pending | WorkflowEngine service | Implement WorkflowEngine service | Q2 | Task state machine | | |
-| ⬜ Pending | CarePlan generation | Generate personalized CarePlans from PlanDefinitions | Q2-Q3 | WorkflowEngine service | | |
-| ⬜ Pending | Task lifecycle | Task lifecycle management with owners, due dates | Q2-Q3 | Task state machine | | |
-| ⏳ Deferred | Request resources | Support ServiceRequest, MedicationRequest, ImmunizationRecommendation | Q3+ | CarePlan generation | | Not MVP |
+| Epic | Description | Repo |
+|------|-------------|------|
+| [#TBD](.) | **Sandbox Scripts** - Docker Compose bundle (HAPI, Gateway, Data Pipes, Admin) | `ohs-player-reference-infrastructure` |
 
-### 2.4 View Rendering (UI Layer)
+### Analytics Epics
 
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | ViewFactoryRegistry | Develop ViewFactoryRegistry/ViewFactoryRepository | Q1-Q2 | | | |
-| ⬜ Pending | Default view factories | Create default view factories for common FHIR data types | Q1-Q2 | ViewFactoryRegistry | | |
-| ⬜ Pending | @Composable functions | Top-level composable consuming flattened data | Q1-Q2 | Data Transformer | | |
-| ⬜ Pending | ViewType mapping | Map ViewTypes to factory functions | Q2 | ViewFactoryRegistry | | |
-| ⬜ Pending | Custom UI support | Enable custom UIs for specific resource types | Q2 | ViewType mapping | | |
-| ⬜ Pending | Widget library | Documented configurable widget library | Q2 | Default view factories | | |
-| ⬜ Pending | Design specifications | Widgets conforming to agreed design specs | Q2 | Widget library | | |
-
-### 2.5 Resource Extraction
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | QuestionnaireResponse extraction | Extract resources from QuestionnaireResponses | Q2 | SDC KMP | | |
-| ⬜ Pending | FHIRPathMappingLanguage | Implement based on Beda FHIRPathMappingLanguage | Q2 | kotlin-fhirpath | | |
-| ⬜ Pending | FHIR Engine integration | Make accessible via FHIR engine library | Q2 | FHIR Engine KMP | | |
-
-### 2.6 Authentication
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | OAuth 2 with PKCE | Online authentication flow | Q1-Q2 | | | |
-| ⬜ Pending | PIN-based offline login | Offline authentication workflow | Q1-Q2 | | | |
-| ⬜ Pending | Keycloak RBAC | Role-based access control via Keycloak | Q1-Q2 | Backend FHIR Gateway | | |
-
-### 2.7 Core Features
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Registers | Configurable data registers for tabular views | Q1-Q2 | View Rendering | | |
-| ⬜ Pending | Profiles | Single record profile data views | Q1-Q2 | View Rendering | | |
-| ⬜ Pending | i18n framework | Multi-language support framework | Q1-Q2 | | | |
-| ⬜ Pending | Sync redesign | Flexible sync architecture for diverse scenarios | Q1-Q2 | FHIR Engine KMP | | |
-| ⬜ Pending | Config Engine | DSL-based configuration format | Q1 | | | |
-
-### 2.8 Reference App
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | GitHub template repo | Set up as GitHub template repository | Q2 | Repository setup | | |
-| ⬜ Pending | V1 Alpha | OHS Player Reference App V1 Alpha | End Q3 | All core features | | |
-| ⬜ Pending | Performance metrics | Document bottlenecks and resolution status | Q1-Q4 | | | |
+| Epic | Description | Repo |
+|------|-------------|------|
+| [#TBD](.) | **FHIR Data Pipes Integration** - Analytics pipeline with sample dashboards | `ohs-player-reference-infrastructure` |
 
 ---
 
-## Workstream 3: FHIR Web Administration Portal
+## ⚡ Horizon 2: Beta Release ("Interoperability & Workflows")
 
-**Timeline:** Q2-Q3 2026  
-**Responsible:** NawiTech
+**Target:** 3-4 months post-Alpha  
+**Focus:** Remote configuration, advanced workflows, bulk operations
 
-### 3.1 Core Library (ohs-player-web-core)
+### Client App Epics
 
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Repository setup | Create mono repo with packages/ohs-player-web-core | Q2 | | | |
-| ⬜ Pending | Vite build setup | Configure Vite in library mode (ESM + CJS) | Q2 | Repository setup | | |
-| ⬜ Pending | TypeScript config | Set up TypeScript with declaration files | Q2 | Repository setup | | |
-| ⬜ Pending | CI/CD pipeline | GitHub Actions for npm publishing | Q2 | Vite build setup | | |
+| Epic | Description | Repo |
+|------|-------------|------|
+| [#TBD](.) | **Advanced Sync & Filtering** - Location/CareTeam filtered data via gateway tags | `ohs-player-reference-client-app` |
+| [#TBD](.) | **Remote Orchestration Prep** - Config ingestion from remote servers | `ohs-player-reference-client-app` |
 
-### 3.2 Configuration Provider
+### Backend & Web Admin Epics
 
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | CorePlatformProvider | Single React context provider for all config | Q2 | Repository setup | | |
-| ⬜ Pending | fhirBaseUrl config | FHIR server/gateway URL configuration | Q2 | CorePlatformProvider | | |
-| ⬜ Pending | fhirVersion config | FHIR version configuration (default R4) | Q2 | CorePlatformProvider | | |
-| ⬜ Pending | customEndpoints config | Custom endpoint alias mapping | Q2 | CorePlatformProvider | | |
-| ⬜ Pending | onError handler | Global error handler callback | Q2 | CorePlatformProvider | | |
+| Epic | Description | Repo |
+|------|-------------|------|
+| [#TBD](.) | **Bulk Management Engines** - CSV/Excel import for workforce, hierarchies, CareTeams | `ohs-player-reference-backend` |
+| [#TBD](.) | **Task Rule Engine V1** - PlanDefinition/ActivityDefinition workflow automation | `ohs-player-reference-backend` |
+| [#TBD](.) | **Audit Trails** - FHIR AuditEvent processing and visualization | `ohs-player-reference-backend` |
 
-### 3.3 Authentication & Authorization
+### Infrastructure Epics
 
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | OIDC discovery | Fetch and cache OIDC discovery document | Q2 | | | |
-| ⬜ Pending | AuthConfig | Issuer and clientId configuration | Q2 | OIDC discovery | | |
-| ⬜ Pending | PKCE flow | Authorization Code Flow with PKCE | Q2 | AuthConfig | | |
-| ⬜ Pending | Token storage | Configurable token store (sessionStorage/memory/custom) | Q2 | PKCE flow | | |
-| ⬜ Pending | useAuth hook | Auth state access hook | Q2 | Token storage | | |
-| ⬜ Pending | Token refresh | Silent token refresh with failure callback | Q2 | useAuth hook | | |
-
-### 3.4 RBAC (Role-Based Access Control)
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | RbacConfig | Role claim path and permission map config | Q2 | Auth module | | |
-| ⬜ Pending | Role extraction | Extract roles from OIDC token claims | Q2 | RbacConfig | | |
-| ⬜ Pending | Permission evaluation | Permission-based access checks (not role-based) | Q2 | Role extraction | | |
-| ⬜ Pending | usePermission hook | Imperative permission checking hook | Q2 | Permission evaluation | | |
-| ⬜ Pending | useRoles hook | Raw role list access hook | Q2 | Role extraction | | |
-| ⬜ Pending | PermissionGuard | Component wrapper for permission-based rendering | Q2 | usePermission hook | | |
-| ⬜ Pending | RoleGuard | Component wrapper for role-based rendering | Q2 | useRoles hook | | |
-| ⬜ Pending | Unauthorized behaviors | Implement hide/disable/redirect behaviors | Q2 | PermissionGuard | | |
-| ⏳ Deferred | RbacAdapter interface | Custom RBAC resolution for complex scenarios | Q2-Q3 | | | For advanced use cases |
-
-### 3.5 FHIR Client
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Unified client | FHIR version-aware client with auto auth token | Q2 | Auth module | | |
-| ⬜ Pending | client.read() | Standard FHIR read operations | Q2 | Unified client | | |
-| ⬜ Pending | client.search() | Standard FHIR search operations | Q2 | Unified client | | |
-| ⬜ Pending | client.create() | Standard FHIR create operations | Q2 | Unified client | | |
-| ⬜ Pending | client.customGet() | Custom endpoint GET requests | Q2 | Unified client | | |
-| ⬜ Pending | Pagination | Auto-pagination support | Q2 | client.search() | | |
-| ⬜ Pending | Data hooks | useCreateResource(), useCustomEndpoint() hooks | Q2 | Unified client | | |
-| ⬜ Pending | useFhirCapabilities | Capability statement hook | Q2 | Unified client | | |
-
-### 3.6 Theming
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | ThemeConfig | Color, typography, spacing, borderRadius tokens | Q2 | | | |
-| ⬜ Pending | Default theme | Sensible default theme values | Q2 | ThemeConfig | | |
-| ⬜ Pending | Theme overrides | Host app theme customization support | Q2 | Default theme | | |
-| ⬜ Pending | Component overrides | Per-component style overrides | Q2 | Theme overrides | | |
-
-### 3.7 UI Components
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Radix UI integration | Adopt Radix UI component library | Q2 | | | |
-| ⬜ Pending | Headless components | Headless component primitives | Q2 | Radix UI integration | | |
-| ⬜ Pending | Styled primitives | Small set of theme-token styled components | Q2 | ThemeConfig | | |
-
-### 3.8 Feature Flags
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | FlagsConfig | Static flag record configuration | Q2 | | | |
-| ⬜ Pending | useFlag hook | Flag checking hook | Q2 | FlagsConfig | | |
-| ⬜ Pending | FeatureGuard | Component wrapper for flag-based rendering | Q2 | useFlag hook | | |
-| ⬜ Pending | Guard ordering | Feature flag -> Auth -> RBAC evaluation order | Q2 | FeatureGuard, PermissionGuard | | |
-
-### 3.9 Internationalization (i18n)
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | I18nConfig | Locale, messages, dateFormat, numberFormat config | Q2 | | | |
-| ⬜ Pending | Default catalog | English message catalog (src/i18n/locales/en.ts) | Q2 | I18nConfig | | |
-| ⬜ Pending | Typed catalogs | TypeScript typed message keys | Q2 | Default catalog | | |
-| ⬜ Pending | Interpolation | {{key}} token interpolation support | Q2 | Default catalog | | |
-| ⬜ Pending | useTranslation hook | Translation access hook | Q2 | Typed catalogs | | |
-| ⬜ Pending | Intl API | Date/time/number formatting via browser Intl API | Q2 | | | |
-| ⏳ Deferred | RTL support | Right-to-left layout support via dir attribute | Q2-Q3 | | | For Arabic, Hebrew locales |
-
-### 3.10 Reference Application (ohs-player-web)
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | App scaffold | Create apps/ohs-player-web structure | Q2 | Core library | | |
-| ⬜ Pending | Environment config | VITE_FHIR_BASE_URL, VITE_OIDC_ISSUER, VITE_CLIENT_ID | Q2 | App scaffold | | |
-| ⬜ Pending | Feature modules | src/features directory structure | Q2 | App scaffold | | |
-
-### 3.11 Portal Features
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | User management | Configurable user management UI | Q2-Q3 | Core library, Backend endpoints | | |
-| ⬜ Pending | Access controls | Access control configuration UI | Q2-Q3 | RBAC module | | |
-| ⬜ Pending | Location hierarchy | Location hierarchy management (tree UI, drag-drop) | Q2-Q3 | Location hierarchy endpoint | | |
-| ⬜ Pending | Bulk user import | Bulk practitioner/supervisor creation | Q2-Q3 | Bulk user management endpoint | | |
-| ⬜ Pending | Bulk location import | Bulk location seeding | Q2-Q3 | Bulk location endpoint | | |
-| ⬜ Pending | CareTeam management | CareTeam configuration UI | Q2-Q3 | Bulk CareTeam endpoint | | |
-| ⬜ Pending | Organization management | Organization hierarchy management | Q2-Q3 | Bulk organization endpoint | | |
+| Epic | Description | Repo |
+|------|-------------|------|
+| [#TBD](.) | **Data Seeding** - Synthetic clinical data injection into sandbox | `ohs-player-reference-infrastructure` |
 
 ---
 
-## Workstream 4: Backend & Infrastructure
+## 🌍 Horizon 3: General Availability ("Production Blueprints")
 
-**Timeline:** Q1-Q2 2026  
-**Responsible:** NawiTech, Intellisoft
+**Target:** 6+ months post-Beta  
+**Focus:** Scalable cloud architecture, fully remote apps, complex analytics
 
-### 4.1 FHIR Gateway Core
+### Client App Epics
 
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Repository setup | Create ohs-player-reference-backend repository | Q1 | | | |
-| ⬜ Pending | Project structure | Set up access checker plugins and endpoints packages | Q1 | Repository setup | | |
-| ⬜ Pending | Spring Boot config | Configure component scanning for custom plugins | Q1 | Project structure | | |
-| ⬜ Pending | Deployment scripts | Loader path deployment configuration | Q1 | Project structure | | |
+| Epic | Description | Repo |
+|------|-------------|------|
+| [#TBD](.) | **Fully Remote Orchestration** - App logic from remote config (no app store updates) | `ohs-player-reference-client-app` |
+| [#TBD](.) | **Full Platform Parity** - Stable Android, iOS, Web deployments | `ohs-player-reference-client-app` |
 
-### 4.2 Custom Access Checker Plugins
+### Backend & Web Admin Epics
 
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| 🔄 Ongoing | PoC implementation | Proof of concept access checker | Q1 | | | ohs-player-backend branch |
-| ⬜ Pending | Hierarchical access | Custom permissions for District->Facility->Village->Household | Q1-Q2 | PoC implementation | | |
-| ⬜ Pending | Keycloak integration | Authentication and role-based access via Keycloak | Q1-Q2 | PoC implementation | | |
-| ⬜ Pending | Security Labels | Enhanced access checker for sync with security labels | Q2 | Hierarchical access | | |
+| Epic | Description | Repo |
+|------|-------------|------|
+| [#TBD](.) | **Advanced Task Execution** - CQL/FHIRPath workflow logic with simulation | `ohs-player-reference-backend` |
+| [#TBD](.) | **Custom Data Science Views** - Analytics notebooks, ViewDefinition editors | `ohs-player-reference-backend` |
 
-### 4.3 Custom Endpoints
+### Infrastructure Epics
 
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Location hierarchy | /custom/location-hierarchy endpoint | Q1-Q2 | Project structure | | Compute heavy, needs optimization |
-| ⬜ Pending | Practitioner details | /custom/practitioner-details endpoint | Q1-Q2 | Project structure | | |
-| ⬜ Pending | Bulk user management | Bulk user creation endpoint (FHIR + IAM) | Q2 | Keycloak integration | | |
-| ⬜ Pending | Bulk location management | Bulk location seeding endpoint | Q2 | Location hierarchy | | |
-| ⬜ Pending | Bulk organization management | Bulk organization creation endpoint | Q2 | Project structure | | |
-| ⬜ Pending | Bulk CareTeam management | Bulk CareTeam creation endpoint | Q2 | Project structure | | |
-
-### 4.4 FHIR Server Integration
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | HAPI FHIR support | Integration with HAPI FHIR backend | Q2 | FHIR Gateway Core | | |
-| ⬜ Pending | Google Health API | Integration with Google Health API backend | Q2 | FHIR Gateway Core | | |
-| ⬜ Pending | Backend switching | Configurable backend selection | Q2 | HAPI, Google Health API | | |
-
-### 4.5 Audit & Logging
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ✅ Done | AuditEvents logging | AuditEvents logging to FHIR server | Completed | | | |
+| Epic | Description | Repo |
+|------|-------------|------|
+| [#TBD](.) | **Cloud Templates** - AWS/GCP deployment blueprints | `ohs-player-reference-infrastructure` |
+| [#TBD](.) | **High-Volume ETL** - Pipelines to SQL data warehouses | `ohs-player-reference-infrastructure` |
 
 ---
 
-## Workstream 5: Analytics
-
-**Timeline:** Q2-Q3 2026  
-**Responsible:** NawiTech, Intellisoft
-
-### 5.1 FHIR Data Pipes
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Data pipes setup | Deploy FHIR Data Pipes for analytics | Q2 | FHIR Server | | |
-| ⬜ Pending | Basic dashboards | Out-of-the-box dashboards for select use-cases | Q2 | Data pipes setup | | |
-| ⬜ Pending | Superset/Metabase | Dashboard platform integration | Q2-Q3 | Data pipes setup | | |
-
-### 5.2 Dashboard SSO
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | SSO integration | Single Sign-On for dashboard platforms | Q3 | Keycloak integration | | |
-| ⬜ Pending | Unified auth | Unified authentication across all components | Q3 | SSO integration | | |
-
----
-
-## Workstream 6: Packaging & Deployment
-
-**Timeline:** Q2-Q4 2026  
-**Responsible:** NawiTech, Ona, Intellisoft
-
-### 6.1 Docker Deployment
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | ohs-play-compose.yml | Single command Docker Compose deployment | Q4 | All components | | |
-| ⬜ Pending | FHIR Gateway container | Containerized FHIR Gateway | Q2-Q3 | Backend work | | |
-| ⬜ Pending | FHIR Server container | Containerized HAPI FHIR | Q2-Q3 | FHIR Server integration | | |
-| ⬜ Pending | Keycloak container | Containerized Keycloak IAM | Q2-Q3 | Keycloak integration | | |
-| ⬜ Pending | Web Portal container | Containerized web portal | Q3 | Web Portal MVP | | |
-| ⬜ Pending | Analytics container | Containerized FHIR Data Pipes + Dashboards | Q3 | Analytics work | | |
-
-### 6.2 Security
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Vulnerability scanning | Automated vulnerability scanning | Q1 | | | |
-| ⬜ Pending | Source code analysis | Static code analysis tools | Q1 | | | |
-| ⬜ Pending | Security documentation | Security best practices documentation | Q2 | | | |
-
-### 6.3 Templates & Onboarding
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | Config templates | Configuration templates for select use-cases | Q2-Q4 | | | |
-| ⬜ Pending | Quick start guide | Getting started documentation | Q2 | | | |
-| ⬜ Pending | Use-case guides | Guides for specific deployment scenarios | Q3-Q4 | | | |
-
-### 6.4 Documentation
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | GitHub Pages setup | Documentation site on GitHub Pages | Q2 | | | |
-| ⬜ Pending | Architecture docs | Architecture documentation | Q2 | | | |
-| ⬜ Pending | API documentation | API reference documentation | Q2-Q3 | | | |
-| ⬜ Pending | Configuration guide | Step-by-step configuration instructions | Q2-Q3 | | | |
-| ⬜ Pending | Deployment guide | Deployment instructions | Q3 | | | |
-
-### 6.5 Tutorials & Codelabs
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | End-to-end tutorials | Complete workflow tutorials | Q4 | All components | | |
-| ⬜ Pending | Interactive codelabs | Hands-on coding exercises | Q4 | Documentation | | |
-| ⬜ Pending | Video demos | Demo video content | Q4 | | | |
-
-### 6.6 Package Release
-
-| Status | Task | Description | Target | Dependencies | GitHub Issue | Notes |
-|--------|------|-------------|--------|--------------|--------------|-------|
-| ⬜ Pending | APK packaging | Packaged APKs for select use-cases | Q4 | Reference App V1 Alpha | | |
-| ⬜ Pending | npm packages | Published npm packages for web components | Q3-Q4 | Web Portal | | |
-| ⬜ Pending | Maven artifacts | Published Maven artifacts for KMP libraries | Q2-Q4 | Maven migration | | |
-
----
-
-## Milestone Summary
+## 📊 Milestones
 
 | Milestone | Target | Status |
 |-----------|--------|--------|
-| SDC KMP Alpha | Mid Q1 2026 | 🔄 Ongoing |
-| SDC KMP Final | End Q1 2026 | ⬜ Pending |
-| FHIR Engine KMP Alpha | End Q2 2026 | ⬜ Pending |
-| OHS Player Reference App V1 Alpha | End Q3 2026 | ⬜ Pending |
-| Web Portal MVP | Q3 2026 | ⬜ Pending |
-| Docker Compose Deployment | Q4 2026 | ⬜ Pending |
-| Full Documentation & Tutorials | Q4 2026 | ⬜ Pending |
+| `v1.0.0-alpha` | June 2026 | 🔄 In Progress |
+| `v1.1.0-beta` | Q3 2026 | ⬜ Planned |
+| `v1.2.0-ga` | Q4 2026+ | ⬜ Planned |
 
 ---
 
-## How to Update This Checklist
+## 🏷️ Labels
 
-1. **Change status emoji** as work progresses:
-   - ⬜ Pending - Not started
-   - 🔄 Ongoing - In progress  
-   - ✅ Done - Completed
-   - 🚫 Blocked - Blocked by dependency
-   - ⏳ Deferred - Postponed to future phase
+### Issue Types
+- `type: feature` - High-level Feature Epic (in ohs-player)
+- `type: task` - Execution task (in code repos)
+- `type: dependency` - Upstream blocker tracking
+- `type: bug` - Bug report
+- `type: docs` - Documentation
 
-2. **Add GitHub Issue links** when tickets are created (use format `[#123](url)`)
+### Status
+- `status: backlog` - Not yet prioritized
+- `status: ready-for-dev` - Ready for implementation
+- `status: in-progress` - Actively being worked on
+- `status: blocked` - Waiting on dependency
+- `status: review` - In code review
+- `status: done` - Completed
 
-3. **Update Dependencies column** to track what each task is waiting on
+### Component (for core libraries)
+- `component: engine-core` - FHIR Engine core
+- `component: data-capture` - SDC/Questionnaire
+- `component: sync` - Sync functionality
+- `component: kmp` - Kotlin Multiplatform specific
+- `component: web-portal` - Web Admin Portal
+- `component: gateway` - FHIR Gateway
+- `component: infrastructure` - Docker/Deployment
+- `component: analytics` - FHIR Data Pipes/Dashboards
 
-4. **Add Notes** for context, blockers, decisions, or relevant details
-
-5. **Update Target dates** if timelines shift
-
-6. **Add new tasks** as they are identified during implementation
-
-7. **Update Milestone Summary** to reflect overall progress
+### Horizon
+- `horizon: alpha` - v1.0.0-alpha scope
+- `horizon: beta` - v1.1.0-beta scope
+- `horizon: ga` - v1.2.0-ga scope
 
 ---
 
-*Last Updated: [DATE]*  
-*Maintained by: OHS Player Development Team*
+## 📝 Issue Templates
+
+### Feature Epic (ohs-player repo only)
+
+```markdown
+---
+name: "🚀 Feature (Epic)"
+labels: ["type: feature", "status: backlog"]
+---
+
+## 🎯 Objective
+[One sentence describing the user/developer value]
+
+## 📋 Acceptance Criteria
+- [ ] Criterion 1
+- [ ] Criterion 2
+
+## 🛠️ Cross-Repository Tasks
+
+### Client (`ohs-player-reference-client-app`)
+- [ ] ohs-foundation/ohs-player-reference-client-app#
+
+### Backend (`ohs-player-reference-backend`)
+- [ ] ohs-foundation/ohs-player-reference-backend#
+
+### Infrastructure (`ohs-player-reference-infrastructure`)
+- [ ] ohs-foundation/ohs-player-reference-infrastructure#
+
+## 📎 References
+- Architecture doc: [link]
+- Design: [link]
+```
+
+### Execution Task (code repos)
+
+```markdown
+---
+name: "🛠️ Task"
+labels: ["type: task", "status: ready-for-dev"]
+---
+
+## 📍 Context
+**Parent Epic:** ohs-foundation/ohs-player#
+**Component:** [e.g., Auth, Sync, UI]
+
+## 💻 Requirements
+1. [ ] Implement...
+2. [ ] Test...
+3. [ ] Document...
+
+## ✅ Definition of Done
+- [ ] Code compiles without warnings
+- [ ] Unit tests pass
+- [ ] No regression to existing features
+```
+
+### Dependency Tracker (ohs-player repo)
+
+```markdown
+---
+name: "🔗 Dependency"
+labels: ["type: dependency", "status: blocked"]
+---
+
+## 📍 Upstream Context
+**External Issue:** ohs-foundation/kotlin-fhir#
+**Expected Delivery:** [date]
+
+## 🛑 Blocked Epics
+- [ ] ohs-foundation/ohs-player#
+```
+
+---
+
+## 🔗 Key Links
+
+- **Discord:** [OHS Community](https://discord.gg/ohs)
+- **Documentation:** [ohs.community](https://ohs.community)
+- **Core Libraries:**
+  - [kotlin-fhir](https://github.com/ohs-foundation/kotlin-fhir)
+  - [kotlin-fhir-engine](https://github.com/ohs-foundation/kotlin-fhir-engine)
+  - [fhir-gateway](https://github.com/ohs-foundation/fhir-gateway)
+  - [fhir-data-pipes](https://github.com/ohs-foundation/fhir-data-pipes)
+
+---
+
+*Last Updated: May 2026*

@@ -11,6 +11,8 @@ type: Feature
 ## 🎯 Objective
 <!-- What is the objective -->
 
+## User Story
+
 ## 📋 Acceptance Criteria
 - [ ] Criteria 1
 - [ ] Criteria 2
